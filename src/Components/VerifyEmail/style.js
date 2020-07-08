@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const VerifyEmailContainer = styled.form`
+export const VerifyEmailForm = styled.form`
   width: 100%;
   height: 100%;
   display: flex;
@@ -12,6 +12,16 @@ export const VerifyEmailContainer = styled.form`
   background-position: center center;
 `;
 
+export const VerifyEmailCodeForm = styled.form`
+  visibility: ${props => (props.emailIsTrue ? "visible" : "hidden")};
+  width: 100%;
+  height: 50%;
+  margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const VerifyEmailInput = styled.input`
   margin-top: 3%;
   display: block;
@@ -20,6 +30,17 @@ export const VerifyEmailInput = styled.input`
   &::placeholder {
     text-align: center;
     font-weight: bold;
+  }
+`;
+
+export const VerifyEmailCodeInput = styled.input`
+  margin-top: 3%;
+  display: block;
+  width: 21%;
+  height: 8%;
+  &::placeholder {
+    text-align: center;
+    font-weight: bolder;
   }
 `;
 

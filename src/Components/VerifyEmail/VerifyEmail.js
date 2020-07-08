@@ -2,33 +2,56 @@ import React, { useState } from "react";
 import axios from "axios";
 import * as S from "./style";
 
-const VerifyEmail = () => {
-  const [verifyCode, setVerifyCode] = useState();
+const VerifyEmail = ({ history }) => {
+  const [verify, setVerify] = useState({});
+  const [emailIsTrue, setEmailIsTrue] = useState(false);
 
   const onSubmit = async e => {
     e.preventDefault();
-    try {
-      const res = await axios.options("", verifyCode);
-      console.log(res);
-    } catch (err) {
-      err && console.log(err.response);
+    if (!emailIsTrue) {
+      try {
+        const res = await axios.post("http://www.dsm-sns.ml:8080/api/user", {
+          email: verify.email,
+        });
+        setEmailIsTrue(true);
+      } catch (err) {
+        err && console.log(err.response);
+      }
     }
   };
 
   const onChange = e => {
-    setVerifyCode(e.target.value);
+    setVerify({
+      ...verify,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
-    <S.VerifyEmailContainer onSubmit={onSubmit}>
+    <S.VerifyEmailForm onSubmit={onSubmit}>
       <S.VerifyEmailInput
-        value={verifyCode || ""}
+        value={verify.email || ""}
+        name="email"
         onChange={onChange}
-        type="number"
-        placeholder="인증번호"
+        type="email"
+        placeholder="이메일"
       />
-      <S.VerifyEmailButton type="submit">인증번호 보내기</S.VerifyEmailButton>
-    </S.VerifyEmailContainer>
+      <S.VerifyEmailButton type="submit">
+        이메일
+        <br />
+        입력
+      </S.VerifyEmailButton>
+      <S.VerifyEmailCodeForm onSubmit={onSubmit} emailIsTrue={emailIsTrue}>
+        <S.VerifyEmailCodeInput
+          value={verify.code || ""}
+          name="code"
+          onChange={onChange}
+          type="text"
+          placeholder="인증번호"
+        />
+        <S.VerifyEmailButton type="submit">인증번호 입력</S.VerifyEmailButton>
+      </S.VerifyEmailCodeForm>
+    </S.VerifyEmailForm>
   );
 };
 

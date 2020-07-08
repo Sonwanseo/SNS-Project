@@ -26,10 +26,6 @@ const Register = ({ history }) => {
     });
   };
 
-  const passToVerify = () => {
-    history.push("/verifyEmail");
-  };
-
   return (
     <S.RegsiterContainer>
       <S.RegisterTitle>회원가입</S.RegisterTitle>
@@ -55,9 +51,7 @@ const Register = ({ history }) => {
           type="text"
           placeholder="이름"
         />
-        <S.RegisterButton type="submit" onClick={passToVerify}>
-          인증받기
-        </S.RegisterButton>
+        <S.RegisterButton type="submit">인증받기</S.RegisterButton>
       </S.RegisterForm>
     </S.RegsiterContainer>
   );

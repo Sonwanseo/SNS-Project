@@ -86,7 +86,7 @@ const Login = () => {
           PW 찾기
         </Link>
         <Link
-          to="/register"
+          to="/verifyEmail"
           style={{ display: "block", textDecoration: "none" }}
         >
           회원가입
