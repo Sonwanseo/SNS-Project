@@ -8,7 +8,7 @@ const Register = ({ history }) => {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post("", {
+      const res = await axios.post("http://dsm-sns.ml:8080/api/auth/check", {
         userId: registerForm.id,
         password: registerForm.pw,
         name: registerForm.name,

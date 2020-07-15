@@ -11,6 +11,27 @@ export const LoginMainForm = styled.form`
   background-position: center center;
 `;
 
+export const PassportContainer = styled.div`
+  margin: 0 auto;
+  width: 50%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const PassportItem = styled.a`
+  display: inline-block;
+  margin: 0 auto;
+  width: 8%;
+  height: 90%;
+  cursor: pointer;
+`;
+
+export const PassportImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
 export const LoginPassportContainer = styled.div`
   margin: 0 auto;
   width: 60%;
@@ -55,9 +76,11 @@ export const LoginLinkContainer = styled.div`
   margin-right: 30%;
 `;
 
-export const LoginFindLink = styled(Link)`
+export const LoginLink = styled(Link)`
+  min-width: 100px;
+  color: inherit;
   display: block;
   text-decoration: none;
-  width: 40%;
+  width: 30%;
   margin: 0 auto;
 `;

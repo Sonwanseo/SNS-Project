@@ -1,21 +1,42 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import * as S from "./style";
 import axios from "axios";
 
 const Login = () => {
-  const [loginForm, setLoginForm] = useState({ id: "", pw: "" });
+  const [loginForm, setLoginForm] = useState({ id: "", pw: "" }); // 로그인 id, pw 데이터 받는 객체
+  const [isLogined, setIsLogined] = useState(false); // 로그인이 되었는지 검사하는 객체
 
   const onSubmit = async e => {
     e.preventDefault();
+
+    // 이메일 형식이 gmail이나 naver가 맞는지 검사
+    const checkEmailArray = ["gmail.com", "naver.com"];
+    const EMAIL_BACK_AT_SIGN = 1;
+    const checkAvailableEmail = loginForm.id.split("@");
+
+    if (!checkEmailArray.includes(checkAvailableEmail[EMAIL_BACK_AT_SIGN])) {
+      window.alert("올바르지 않은 이메일 형식입니다.");
+      clearInput();
+      return;
+    }
+
     try {
-      const res = await axios.post("http://dsm-sns.ml:8080/api/auth/signIn", {
-        userId: loginForm.id,
-        password: loginForm.pw,
-      });
-      console.log(res);
+      // loginForm 데이터를 보내고 요청이 성공했다면 홈 화면으로 이동
+      const res = await axios.post(
+        "http://www.dsm-sns.ml:8080/api/auth/signIn",
+        {
+          userId: loginForm.id,
+          password: loginForm.pw,
+        }
+      );
+      if (res.status === 200) {
+        setIsLogined(true);
+        // 타임라인(홈) 경로로 이동하는 코드 작성해야 함
+        // 홈에서는 isLogined가 true인지 검사해서 true라면 mount false면 login으로 redirect
+      }
     } catch (err) {
-      err && console.error(err);
+      window.alert("에러 발생");
+      console.error(err);
     }
   };
 
@@ -32,40 +53,40 @@ const Login = () => {
 
   return (
     <S.LoginMainForm onSubmit={onSubmit}>
-      <S.LoginPassportContainer>
-        <S.LoginPassport
+      <S.PassportContainer>
+        <S.PassportItem
           href="http://www.dsm-sns.ml:8080/api/auth/google"
           target="_blank"
         >
-          <S.LoginPassportImg
+          <S.PassportImg
             src="https://pbs.twimg.com/profile_images/770139154898382848/ndFg-IDH.jpg"
             alt="구글로 로그인"
           />
-        </S.LoginPassport>
-        <S.LoginPassport
+        </S.PassportItem>
+        <S.PassportItem
           href="http://www.dsm-sns.ml:8080/api/auth/facebook"
           target="_blank"
         >
-          <S.LoginPassportImg
+          <S.PassportImg
             src="https://www.facebook.com/images/fb_icon_325x325.png"
             alt="페이스북으로 로그인"
           />
-        </S.LoginPassport>
-        <S.LoginPassport
+        </S.PassportItem>
+        <S.PassportItem
           href="http://www.dsm-sns.ml:8080/api/auth/github"
           target="_blank"
         >
-          <S.LoginPassportImg
+          <S.PassportImg
             src="https://miro.medium.com/max/318/1*1OKmA2EdGln8O6RCVORgGg.png"
             alt="깃허브로 로그인"
           />
-        </S.LoginPassport>
-      </S.LoginPassportContainer>
+        </S.PassportItem>
+      </S.PassportContainer>
       <S.LoginInputBox
         value={loginForm.id || ""}
         onChange={onChange}
         name="id"
-        type="text"
+        type="email"
         placeholder="E-mail"
       />
       <S.LoginInputBox
@@ -75,22 +96,11 @@ const Login = () => {
         type="password"
         placeholder="Password"
       />
-      <S.LoginButton type="submit" onClick={clearInput}>
-        로그인
-      </S.LoginButton>
+      <S.LoginButton type="submit">로그인</S.LoginButton>
       <S.LoginLinkContainer>
-        <Link to="/findID" style={{ display: "block", textDecoration: "none" }}>
-          E-mail 찾기
-        </Link>
-        <Link to="/findPW" style={{ display: "block", textDecoration: "none" }}>
-          PW 찾기
-        </Link>
-        <Link
-          to="/verifyEmail"
-          style={{ display: "block", textDecoration: "none" }}
-        >
-          회원가입
-        </Link>
+        <S.LoginLink to="/findID">E-mail 찾기</S.LoginLink>
+        <S.LoginLink to="/findPW">PW 찾기</S.LoginLink>
+        <S.LoginLink to="/verifyEmail">회원가입</S.LoginLink>
       </S.LoginLinkContainer>
     </S.LoginMainForm>
   );

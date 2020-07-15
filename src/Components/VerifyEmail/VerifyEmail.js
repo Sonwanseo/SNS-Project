@@ -10,10 +10,13 @@ const VerifyEmail = ({ history }) => {
     e.preventDefault();
     if (!emailIsTrue) {
       try {
-        const res = await axios.post("http://www.dsm-sns.ml:8080/api/user", {
+        const res = await axios.post("http://dsm-sns.ml:8080/api/user", {
           email: verify.email,
         });
         setEmailIsTrue(true);
+        if (res.code === verify.code) {
+          return res.pw;
+        }
       } catch (err) {
         err && console.log(err.response);
       }

@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact={true} path="/" component={Login} />
+        <Route path="/" component={Login} exact />
         <Route path="/register" component={Register} />
         <Route path="/findID" component={FindID} />
         <Route path="/findPW" component={FindPW} />
