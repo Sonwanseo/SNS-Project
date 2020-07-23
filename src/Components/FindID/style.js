@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FindIDContainer = styled.form`
+export const FindIDForm = styled.form`
   width: 100%;
   height: 100%;
   display: flex;

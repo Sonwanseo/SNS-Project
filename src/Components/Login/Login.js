@@ -16,7 +16,6 @@ const Login = () => {
 
     if (!checkEmailArray.includes(checkAvailableEmail[EMAIL_BACK_AT_SIGN])) {
       window.alert("올바르지 않은 이메일 형식입니다.");
-      clearInput();
       return;
     }
 
@@ -45,10 +44,6 @@ const Login = () => {
       ...loginForm,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const clearInput = () => {
-    setLoginForm({ id: "", pw: "" });
   };
 
   return (
@@ -100,7 +95,7 @@ const Login = () => {
       <S.LoginLinkContainer>
         <S.LoginLink to="/findID">E-mail 찾기</S.LoginLink>
         <S.LoginLink to="/findPW">PW 찾기</S.LoginLink>
-        <S.LoginLink to="/verifyEmail">회원가입</S.LoginLink>
+        <S.LoginLink to="/register">회원가입</S.LoginLink>
       </S.LoginLinkContainer>
     </S.LoginMainForm>
   );

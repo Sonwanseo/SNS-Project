@@ -4,7 +4,7 @@ import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import FindID from "./Components/FindID/FindID";
 import FindPW from "./Components/FindPW/FindPW";
-import VerifyEmail from "./Components/VerifyEmail/VerifyEmail";
+import Timeline from "./Components/Timeline/Timeline";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/findID" component={FindID} />
         <Route path="/findPW" component={FindPW} />
-        <Route path="/verifyEmail" component={VerifyEmail} />
+        <Route path="/home" component={Timeline} />
         <Redirect path="*" to="/" />
       </Switch>
     </BrowserRouter>
