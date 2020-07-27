@@ -11,3 +11,7 @@ Post 컴포넌트를 만들다가 Containers와 Components의 분류를 뼈저�
 이미 만든 것들은 시간이 없고 귀찮아서 분류하지 않지만,
 Timeline을 포함하여 지금부터 개발하는 것들은 분류를 하자.
 Containers와 Components 분류 시작
+
+2020.07.27
+Containers와 Components 분류 완료
+Post 만들기 시작

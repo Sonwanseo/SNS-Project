@@ -1,20 +1,20 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import LoginContainer from "./Containers/LoginContainer/LoginContainer";
-import Register from "./Components/Register/Register";
+import RegisterContainer from "./Containers/RegisterContainer/RegisterContainer";
 import FindIDContainer from "./Containers/FindIDContainer/FindIDContainer";
-import FindPW from "./Components/FindPW/FindPW";
-import Timeline from "./Components/Timeline/Timeline";
+import FindPWContainer from "./Containers/FindPWContainer/FindPWContainer";
+import HomeContainer from "./Containers/HomeContainer/HomeContainer";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" component={LoginContainer} exact />
-        <Route path="/register" component={Register} />
+        <Route path="/register" component={RegisterContainer} />
         <Route path="/findID" component={FindIDContainer} />
-        <Route path="/findPW" component={FindPW} />
-        <Route path="/home" component={Timeline} />
+        <Route path="/findPW" component={FindPWContainer} />
+        <Route path="/home" component={HomeContainer} />
         <Redirect path="*" to="/" />
       </Switch>
     </BrowserRouter>
