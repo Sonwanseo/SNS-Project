@@ -44,6 +44,11 @@ export const PostLikes = styled.div`
   margin-right: 35%;
 `;
 
+export const PostLikesImg = styled.img`
+  width: 5%;
+  cursor: pointer;
+`
+
 export const PostWriteComments = styled.img`
   display: inline;
   width: 5%;

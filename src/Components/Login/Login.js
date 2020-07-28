@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState({ id: "", pw: "" }); // 로그인 id, pw 데이터 받는 객체
-  const [isLogined, setIsLogined] = useState(false); // 로그인이 되었는지 검사하는 객체
+  // const [isLogined, setIsLogined] = useState(false); // 로그인이 되었는지 검사하는 객체
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -29,7 +29,7 @@ const Login = () => {
         }
       );
       if (res.status === 200) {
-        setIsLogined(true);
+        // setIsLogined(true);
         // 타임라인(홈) 경로로 이동하는 코드 작성해야 함
         // 홈에서는 isLogined가 true인지 검사해서 true라면 mount false면 login으로 redirect
       }
@@ -93,7 +93,6 @@ const Login = () => {
       />
       <S.LoginButton type="submit">로그인</S.LoginButton>
       <S.LoginLinkContainer>
-        <S.LoginLink to="/findID">E-mail 찾기</S.LoginLink>
         <S.LoginLink to="/findPW">PW 찾기</S.LoginLink>
         <S.LoginLink to="/register">회원가입</S.LoginLink>
       </S.LoginLinkContainer>

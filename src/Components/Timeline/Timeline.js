@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Post from "../Post/Post";
 
 const Timeline = () => {
@@ -8,7 +9,7 @@ const Timeline = () => {
       author: "sonwanseo",
       content: "This is an example.",
       src:
-        "https://lh3.googleusercontent.com/proxy/esK8BSjDUOe9X1q4ty9eDMJFYDzxZLeqtav-anFEpPi-Rfg3GlQho31cUASHXaUwxHtSxn5qhd9bq1aitAr_Y8FTsJ0teN9OSm9ceHV0VgIlCKWaVA",
+        "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg, https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg",
       likes: 100,
     },
     {
@@ -23,17 +24,55 @@ const Timeline = () => {
       content: "This is third example.",
       likes: 500000,
     },
+    {
+      id: 4,
+      author: "seosoasdf",
+      content: "This is third example.",
+      likes: 500000,
+    },
+    {
+      id: 5,
+      author: "seosqwgweqn",
+      content: "This is third example.",
+      likes: 500000,
+    },
   ]);
-  let id = 4;
+
+  // const [postLists, setPostLists] = useState({});
+
+  const getPostLists = async () => {
+    try {
+      const res = await axios.get("");
+      setPostLists(res);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getPostLists();
+  }, []);
+
+  const plusLikes = async id => {
+    try {
+      await axios.post("", {
+        id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       {postLists.map(post => (
         <Post
-          id={post.id}
+          key={post.id}
           author={post.author}
           content={post.content}
           src={post.src || null}
           likes={post.likes}
+          plusLikes={plusLikes}
         />
       ))}
     </div>
