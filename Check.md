@@ -21,3 +21,7 @@ Post 거의 작성
 Timeline 거의 작성
 Write 컴포넌트 만들기 시작
 토큰이 유효한건지 검사해주는 서버의 api가 있어야 됨 //
+
+2020.08.04
+passport 데이터 받고, home으로 redirect, accessToken, refreshToken 저장
+/home에서 useEffect로 accessToken 보내기

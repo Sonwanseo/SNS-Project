@@ -1,13 +1,25 @@
 import React from "react";
 import Timeline from "../../Components/Timeline/Timeline";
+import axios from "axios";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const HomeContainer = props => {
+  const history = useHistory();
+
+  const validateToken = async () => {
+    const res = await axios({
+      method: "get",
+      url: "http://www.dsm-sns.ml:8080/api/auth/tokenValidation",
+      headers: {
+        "x-access-token": localStorage.getItem("accessToken"),
+      },
+    });
+    // history.goBack();
+  };
+
   useEffect(() => {
-    // 토큰이 유효한건지 검사해주는 서버의 api가 있어야 됨
-    if (!window.localStorage.getItem("accessToken")) {
-      window.history.back();
-    }
+    validateToken();
   }, []);
 
   return <Timeline />;

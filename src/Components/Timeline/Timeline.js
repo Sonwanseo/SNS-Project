@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import * as S from "./style";
 import Post from "../Post/Post";
+import Write from "../Write/Write";
 
 const Timeline = () => {
   const [postLists, setPostLists] = useState([
@@ -42,7 +44,7 @@ const Timeline = () => {
 
   const getPostLists = async () => {
     try {
-      const res = await axios.get("");
+      const res = await axios.get("", {});
       setPostLists(res);
     } catch (err) {
       console.error(err);
@@ -64,7 +66,8 @@ const Timeline = () => {
   };
 
   return (
-    <div>
+    <S.TimelineContainer>
+      <Write />
       {postLists.map(post => (
         <Post
           key={post.id}
@@ -75,7 +78,7 @@ const Timeline = () => {
           plusLikes={plusLikes}
         />
       ))}
-    </div>
+    </S.TimelineContainer>
   );
 };
 
