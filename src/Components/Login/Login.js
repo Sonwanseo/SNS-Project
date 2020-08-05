@@ -29,9 +29,9 @@ const Login = () => {
         }
       );
       if (res.status === 200) {
-        // setIsLogined(true);
-        // 타임라인(홈) 경로로 이동하는 코드 작성해야 함
-        // 홈에서는 isLogined가 true인지 검사해서 true라면 mount false면 login으로 redirect
+        window.href = "http://localhost:3000/home";
+        localStorage.setItem("accessToken", res.data.token);
+        localStorage.setItem("refreshToken", res.data.refreshtoken);
       }
     } catch (err) {
       window.alert("에러 발생");

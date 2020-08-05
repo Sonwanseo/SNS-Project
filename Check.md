@@ -25,3 +25,7 @@ Write 컴포넌트 만들기 시작
 2020.08.04
 passport 데이터 받고, home으로 redirect, accessToken, refreshToken 저장
 /home에서 useEffect로 accessToken 보내기
+
+2020.08.04
+firstLogin인지 검사 후 firstLogin이라면 모달창
+비밀번호 찾기 API 다시 명철에게 요청하기

@@ -15,7 +15,7 @@ const HomeContainer = props => {
         "x-access-token": localStorage.getItem("accessToken"),
       },
     });
-    // history.goBack();
+    if (res.status === 404) history.goBack();
   };
 
   useEffect(() => {
